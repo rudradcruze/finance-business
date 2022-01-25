@@ -10,7 +10,7 @@
     <!-- Our CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <title>Registration Form</title>
+    <title>Registration Form Validation</title>
 </head>
 
 <body>
