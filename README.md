@@ -11,6 +11,7 @@
     <li>Admin password change - developed</li>
     <li>Admin Dashboard * (Under Development)</li>
     <li>Banner Slider * (Under Development)</li>
+    <li>Service Section * (Under Development)</li>
     <li>Gust Message Send - developed</li>
 </ul>
 
