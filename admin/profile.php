@@ -1,8 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['user_status'])) {
-        header('location: login.php');
-    }
+    require_once 'is_admin.php';
     require_once '../header.php';
     require_once 'navbar.php';
     require_once '../db.php';
