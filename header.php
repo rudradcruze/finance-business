@@ -9,8 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Our CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 
-    <title>Registration Form Validation</title>
+    <title>Login System</title>
 </head>
 
 <body>
