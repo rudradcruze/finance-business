@@ -1,6 +1,12 @@
 <?php
-session_start();
-require_once('header.php');
+
+    session_start();
+
+    if (isset($_SESSION['user_status'])) {
+        header('location: admin/dashboard.php');
+    }
+    require_once('header.php');
+
 ?>
 <div class="card mx-auto mt-5" style="width: 45%;">
     <div class="card-header text-center">
@@ -91,12 +97,16 @@ require_once('header.php');
                 ?>
             </small>
             <!-- Buttons -->
-            <button type="submit" class="btn btn-success" name="submit">Register Now</button>
-            <button type="reset" class="btn btn-danger">Reset Form</button>
+            <div class="buttons d-flex justify-content-between">
+                <button type="submit" class="btn btn-success" name="submit">Register Now</button>
+                <button type="reset" class="btn btn-danger">Reset Form</button>
+                <a href="login.php" class="link-primary text-end">Login</a>
+            </div>
         </form>
 
     </div>
 </div>
+
 <?php
-require_once('footer.php');
+    require_once('footer.php');
 ?>

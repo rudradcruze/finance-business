@@ -1,14 +1,7 @@
 <?php
 
 session_start();
-
-// Database Information
-$db_host = "localhost";
-$db_user = "root";
-$db_pass = "";
-$db_name = "finance_business";
-
-$db_connect = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+require_once('db.php');
 
 if (isset($_POST['submit'])) {
 
@@ -19,8 +12,6 @@ if (isset($_POST['submit'])) {
     $numberNumber = $_POST['numberNumber'];
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
-
-
 
     // Password Validation
     $password_cap = preg_match('@[A-Z]@', $password);
