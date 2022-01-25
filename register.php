@@ -9,7 +9,7 @@
 
 ?>
 <div class="card mx-auto mt-5" style="width: 45%;">
-    <div class="card-header text-center">
+    <div class="card-header bg-success text-white text-center">
         <h2>Registration Form With Validation</h2>
     </div>
     <div class="card-body">
@@ -18,8 +18,8 @@
         ?>
             <div class="alert alert-danger" role="alert">
                 <?php
-                echo $_SESSION['empty_msg'];
-                unset($_SESSION['empty_msg']);
+                    echo $_SESSION['empty_msg'];
+                    unset($_SESSION['empty_msg']);
                 ?>
             </div>
 
@@ -29,8 +29,8 @@
         ?>
             <div class="alert alert-danger" role="alert">
                 <?php
-                echo $_SESSION['err_msg'];
-                unset($_SESSION['err_msg']);
+                    echo $_SESSION['err_msg'];
+                    unset($_SESSION['err_msg']);
                 ?>
             </div>
 
@@ -40,8 +40,8 @@
         ?>
             <div class="alert alert-success" role="alert">
                 <?php
-                echo $_SESSION['suss_msg'];
-                unset($_SESSION['suss_msg']);
+                    echo $_SESSION['suss_msg'];
+                    unset($_SESSION['suss_msg']);
                 ?>
             </div>
 

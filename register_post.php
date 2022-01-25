@@ -65,6 +65,7 @@ if (isset($_POST['submit'])) {
                 }
             }else {
                 $_SESSION['user_name_msg'] = "Username must be a to z.";
+                header('location: register.php');
             }
         }else {
             $_SESSION['full_name_msg'] = "Full name must be A to Z.";
