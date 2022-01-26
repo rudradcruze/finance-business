@@ -1,11 +1,13 @@
 <?php
 
-    session_start();
     require_once 'is_admin.php';
     require_once '../header.php';
     require_once '../db.php';
     require_once 'navbar.php';
 
+    $get_query = "SELECT * FROM banners";
+    $from_db = mysqli_query($db_connect, $get_query);
+    $after_assoc = mysqli_fetch_assoc($from_db);
 ?>
 
 <section>
@@ -114,7 +116,71 @@
                     <div class="card-header">
                         <h5 class="card-title text-capitalize">Banner add list</h5>
                     </div>
-                    <div class="card-body"></div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead class="table-info">
+                                <td>Banner Subtitle</td>
+                                <td>Banner Title</td>
+                                <td>Banner Details</td>
+                                <td>Location</td>
+                                <td>Active Status</td>
+                                <td>Action</td>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach ($from_db as $banner) :
+                                ?>
+
+                                    <tr>
+                                        <td><?= $banner['banner_sub_title']?></td>
+                                        <td><?= $banner['banner_title']?></td>
+                                        <td><?= $banner['banner_detail']?></td>
+                                        <td>
+                                            <img style="width: 100px;" src="../<?= $banner['image_location']?>" alt="Image">
+                                        </td>
+                                        <td>
+                                            <?php
+                                                if($banner['read_status'] == 1) :
+                                            ?>
+
+                                                <span class="badge badge-sm bg-success">Active</span>
+
+                                            <?php
+                                                else:
+                                            ?>
+
+                                                <span class="badge badge-sm bg-warning">De-Active</span>
+
+                                            <?php
+                                                endif
+                                            ?>
+                                        </td>
+                                        <td>
+                                        <div class="btn-group btn-group-sm d-flex" role="group" aria-label="Basic mixed styles example">
+                                            <?php
+                                                if($banner['read_status'] == 1) :
+                                            ?>
+                                                    <a href="banner_status.php?banner_id=<?= $banner['id']?>&active_status=2" class="btn btn-warning">De-active</a>
+                                            <?php
+                                                else:
+                                            ?>
+                                                    <a href="banner_status.php?banner_id=<?= $banner['id']?>&active_status=1" class="btn btn-success">Active</a>
+
+                                            <?php
+                                                endif
+                                            ?>
+                                            <a href="banner_edit.php?banner_id=<?= $banner['id']?>" class="btn btn-info">Edit</a>
+                                            <a href="#" class="btn btn-danger">Delete</a>
+                                        </div>
+                                        </td>
+                                    </tr>
+
+                                <?php 
+                                    endforeach
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

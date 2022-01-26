@@ -1,5 +1,4 @@
 <?php
-
     require_once 'is_admin.php';
     require_once '../db.php';
 
