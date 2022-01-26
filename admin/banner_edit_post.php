@@ -7,6 +7,8 @@
     $banner_detail = $_POST['banner_detail'];
     $banner_id = $_POST['banner_id'];
     
+    $error_catch = 0;
+
     $update_details_query = "UPDATE banners SET banner_sub_title='$banner_sub_title', banner_title='$banner_title', banner_detail='$banner_detail' WHERE id='$banner_id'";
     mysqli_query($db_connect, $update_details_query);
 
@@ -40,17 +42,23 @@
                 $update_image_query = "UPDATE banners SET image_location='$image_location' WHERE id='$banner_id'";
 
                 mysqli_query($db_connect, $update_image_query);
-
-                header('location: banner.php');
+                $error_catch = 0;
             }else {
                 $_SESSION['banner_edit_image_file_err'] = "Your image file format must be jpg, jpeg, png, gif";
+                $error_catch = 1;
+                // header('location: banner_edit.php?banner_id=' . $banner_id);
                 header('location: banner_edit.php?banner_id=' . $banner_id);
             }
         }else {
             $_SESSION['banner_edit_image_big'] = "Your image to big! more then 2.0mb";
+            $error_catch = 1;
+            // header('location: banner_edit.php?banner_id=' . $banner_id);
             header('location: banner_edit.php?banner_id=' . $banner_id);
         }
     }
-    $_SESSION['banner_edit_success'] = "Banner successfully edit";
-    header('location: banner.php');
+
+    if ($error_catch == 0) {
+        $_SESSION['banner_edit_success'] = "Banner successfully edit";
+        header('location: banner.php');
+    }
 ?>
