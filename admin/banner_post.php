@@ -1,6 +1,5 @@
 <?php 
 
-    session_start();
     require_once 'is_admin.php';
     require_once '../db.php';
     
@@ -11,6 +10,9 @@
     $_SESSION['banner_sub_title_autofill'] = $banner_sub_title;
     $_SESSION['banner_title_autofill'] = $banner_title;
     $_SESSION['banner_detail_autofill'] = $banner_detail;
+
+    $banner_sub_title = ucwords($banner_sub_title);
+    $banner_title = ucwords($banner_title);
 
     $validate_sub_title_char_lw = preg_match('@[a-z]@', $banner_sub_title);
     $validate_sub_title_char_cap = preg_match('@[A-Z]@', $banner_sub_title);
@@ -51,7 +53,7 @@
                         $image_extension = end($after_explode);
                         $allow_extension = array('jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF');
                         if (in_array($image_extension, $allow_extension)) {
-                            $insert_query = "INSERT INTO banners (banner_sub_title, banner_title, banner_sub_detail, image_location) VALUES ('$banner_sub_title', '$banner_title', '$banner_detail', 'Primary Location')";
+                            $insert_query = "INSERT INTO banners (banner_sub_title, banner_title, banner_detail, image_location) VALUES ('$banner_sub_title', '$banner_title', '$banner_detail', 'Primary Location')";
 
                             mysqli_query($db_connect, $insert_query);
 
@@ -62,7 +64,16 @@
                             $save_location = "../uploads/banner/banner." . $image_new_name;
 
                             move_uploaded_file($_FILES['banner_image']['tmp_name'], $save_location);
-                            echo "Done";
+                            
+                            $image_location = "uploads/banner/banner." . $image_new_name;
+
+                            // Image Update location query
+                            $update_query = "UPDATE banners SET image_location='$image_location' WHERE id='$id_form_db'";
+
+                            mysqli_query($db_connect, $update_query);
+
+                            $_SESSION['banner_created'] = "Banner Successfully Created!";
+                            header('location: banner.php');
                         }else {
                             $_SESSION['send_value'] = 0;
                             $_SESSION['banner_image'] = "is-invalid";

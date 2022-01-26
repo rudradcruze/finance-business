@@ -1,7 +1,4 @@
 <?php
-
-    session_start();
-    
     require_once 'is_admin.php';
 
     $login_email = $_SESSION['email'];
