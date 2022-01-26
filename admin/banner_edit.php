@@ -39,15 +39,37 @@
                                 <img style="width: 150px;" src="../<?= $after_assoc['image_location']?>" alt="Image">
                             </div>
 
+                            <?php
+                                if (isset($_SESSION['banner_edit_image_file_err'])) {
+                            ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php 
+                                    echo $_SESSION['banner_edit_image_file_err'];
+                                    unset($_SESSION['banner_edit_image_file_err']);
+                                ?>
+                            </div>
+
+                            <?php
+                                }
+
+                                if (isset($_SESSION['banner_edit_image_big'])) {
+                            ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php 
+                                    echo $_SESSION['banner_edit_image_big'];
+                                    unset($_SESSION['banner_edit_image_big']);
+                                ?>
+                            </div>
+                            <?php
+                                }
+                            ?>
+
                             <div class="mb-3">
                                 <label class="form-label text-capitalize text-primary">banner image</label>
                                 <input type="file" class="form-control" name="banner_image">
                             </div>
                             <div class="mb-1">
-                                <button type="submit" class="form-control btn btn-primary">Add Banner</button>
-                            </div>
-                            <div class="mb-3">
-                                <button type="reset" class="form-control btn btn-warning">Rest Fields</button>
+                                <button type="submit" class="form-control btn btn-primary">Save Changes</button>
                             </div>
                         </form>
                     </div>
