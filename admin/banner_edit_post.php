@@ -44,11 +44,11 @@
                 header('location: banner.php');
             }else {
                 $_SESSION['banner_edit_image_file_err'] = "Your image file format must be jpg, jpeg, png, gif";
-                header('location: banner.php');
+                header('location: banner_edit.php?banner_id=' . $banner_id);
             }
         }else {
             $_SESSION['banner_edit_image_big'] = "Your image to big! more then 2.0mb";
-            header('location: banner.php');
+            header('location: banner_edit.php?banner_id=' . $banner_id);
         }
     }
     $_SESSION['banner_edit_success'] = "Banner successfully edit";
