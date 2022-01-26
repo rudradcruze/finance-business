@@ -117,6 +117,30 @@
                         <h5 class="card-title text-capitalize">Banner add list</h5>
                     </div>
                     <div class="card-body">
+                        <?php
+                            if(isset($_SESSION['banner_edit_success'])):
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php
+                                echo $_SESSION['banner_edit_success'];
+                                unset($_SESSION['banner_edit_success']);
+                            ?>
+                        </div>
+                        <?php
+                            endif
+                        ?>
+                        <?php
+                            if(isset($_SESSION['banner_created'])):
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php
+                                echo $_SESSION['banner_created'];
+                                unset($_SESSION['banner_created']);
+                            ?>
+                        </div>
+                        <?php
+                            endif
+                        ?>
                         <table class="table table-bordered">
                             <thead class="table-info">
                                 <td>Banner Subtitle</td>
