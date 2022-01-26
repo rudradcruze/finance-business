@@ -129,6 +129,7 @@
                         <?php
                             endif
                         ?>
+                        
                         <?php
                             if(isset($_SESSION['banner_created'])):
                         ?>
@@ -141,6 +142,33 @@
                         <?php
                             endif
                         ?>
+
+                        <?php
+                            if(isset($_SESSION['banner_activated'])):
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php
+                                echo $_SESSION['banner_activated'];
+                                unset($_SESSION['banner_activated']);
+                            ?>
+                        </div>
+                        <?php
+                            endif
+                        ?>
+
+                        <?php
+                            if(isset($_SESSION['banner_deactivated'])):
+                        ?>
+                        <div class="alert alert-warning" role="alert">
+                            <?php
+                                echo $_SESSION['banner_deactivated'];
+                                unset($_SESSION['banner_deactivated']);
+                            ?>
+                        </div>
+                        <?php
+                            endif
+                        ?>
+
                         <table class="table table-bordered">
                             <thead class="table-info">
                                 <td>Banner Subtitle</td>
