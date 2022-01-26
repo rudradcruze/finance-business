@@ -1,5 +1,4 @@
 <?php
-    session_start();
 
     require_once 'is_admin.php';
     require_once '../header.php';
