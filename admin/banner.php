@@ -169,8 +169,22 @@
                             endif
                         ?>
 
+                        <?php
+                            if(isset($_SESSION['banner_delete_message'])):
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php
+                                echo $_SESSION['banner_delete_message'];
+                                unset($_SESSION['banner_delete_message']);
+                            ?>
+                        </div>
+                        <?php
+                            endif
+                        ?>
+
                         <table class="table table-bordered">
                             <thead class="table-info">
+                                <td>Sl</td>
                                 <td>Banner Subtitle</td>
                                 <td>Banner Title</td>
                                 <td>Banner Details</td>
@@ -180,10 +194,11 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach ($from_db as $banner) :
+                                    foreach ($from_db as $key => $banner) :
                                 ?>
 
                                     <tr>
+                                        <td><?= $key+1?></td>
                                         <td><?= $banner['banner_sub_title']?></td>
                                         <td><?= $banner['banner_title']?></td>
                                         <td><?= $banner['banner_detail']?></td>
@@ -222,11 +237,10 @@
                                                 endif
                                             ?>
                                             <a href="banner_edit.php?banner_id=<?= $banner['id']?>" class="btn btn-info">Edit</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
+                                            <a href="banner_delete.php?banner_id=<?= $banner['id']?>" class="btn btn-danger">Delete</a>
                                         </div>
                                         </td>
                                     </tr>
-
                                 <?php 
                                     endforeach
                                 ?>
