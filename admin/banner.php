@@ -22,7 +22,7 @@
                         <form action="banner_post.php" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="form-label text-capitalize text-primary">Banner sub title</label>
-                                <input type="text" name="banner_sub_title" class="form-control <?php
+                                <input type="text" required name="banner_sub_title" class="form-control <?php
                                         if (isset($_SESSION['banner_sub_title'])) {
                                             echo $_SESSION['banner_sub_title'];
                                             unset($_SESSION['banner_sub_title']);
@@ -37,7 +37,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label text-capitalize text-primary">Banner Title</label>
-                                <input type="text" name="banner_title" class="form-control <?php
+                                <input type="text" required name="banner_title" class="form-control <?php
                                         if (isset($_SESSION['banner_title'])) {
                                             echo $_SESSION['banner_title'];
                                             unset($_SESSION['banner_title']);
@@ -52,7 +52,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label text-capitalize text-primary">Banner detail</label>
-                                <textarea name="banner_detail"style="resize: none;" cols="30" rows="8" class="form-control <?php
+                                <textarea name="banner_detail" required style="resize: none;" cols="30" rows="8" class="form-control <?php
                                         if (isset($_SESSION['banner_detail'])) {
                                             echo $_SESSION['banner_detail'];
                                             unset($_SESSION['banner_detail']);
@@ -90,7 +90,7 @@
                                 <?php
                                     }
                                 ?>
-                                <input type="file" class="form-control <?php
+                                <input type="file" required class="form-control <?php
                                         if (isset($_SESSION['banner_image'])) {
                                             echo $_SESSION['banner_image'];
                                             unset($_SESSION['banner_image']);
@@ -169,8 +169,22 @@
                             endif
                         ?>
 
+                        <?php
+                            if(isset($_SESSION['banner_delete_message'])):
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php
+                                echo $_SESSION['banner_delete_message'];
+                                unset($_SESSION['banner_delete_message']);
+                            ?>
+                        </div>
+                        <?php
+                            endif
+                        ?>
+
                         <table class="table table-bordered">
                             <thead class="table-info">
+                                <td>Sl</td>
                                 <td>Banner Subtitle</td>
                                 <td>Banner Title</td>
                                 <td>Banner Details</td>
@@ -180,10 +194,11 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach ($from_db as $banner) :
+                                    foreach ($from_db as $key => $banner) :
                                 ?>
 
                                     <tr>
+                                        <td><?= $key+1?></td>
                                         <td><?= $banner['banner_sub_title']?></td>
                                         <td><?= $banner['banner_title']?></td>
                                         <td><?= $banner['banner_detail']?></td>
@@ -222,11 +237,10 @@
                                                 endif
                                             ?>
                                             <a href="banner_edit.php?banner_id=<?= $banner['id']?>" class="btn btn-info">Edit</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
+                                            <a href="banner_delete.php?banner_id=<?= $banner['id']?>" class="btn btn-danger">Delete</a>
                                         </div>
                                         </td>
                                     </tr>
-
                                 <?php 
                                     endforeach
                                 ?>
