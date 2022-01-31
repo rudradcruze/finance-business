@@ -7,7 +7,6 @@
 
     $get_query = "SELECT * FROM service_heads";
     $from_db = mysqli_query($db_connect, $get_query);
-    $after_assoc = mysqli_fetch_assoc($from_db);
 ?>
 
 <section>
@@ -79,7 +78,7 @@
                             </div>
                             
                             <div class="mb-1">
-                                <button class="btn btn-primary form-control" type="submit">Add Button</button>
+                                <button class="btn btn-primary form-control" type="submit">Add Heading</button>
                             </div>
                             <div class="mb-3">
                                 <button type="reset" class="btn btn-warning form-control">Reset</button>
@@ -107,19 +106,71 @@
                     <?php
                         endif
                     ?>
+                    <?php
+                        if (isset($_SESSION['service_heading_success'])) :
+                    ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php
+                            echo $_SESSION['service_heading_success'];
+                            unset($_SESSION['service_heading_success']);
+                        ?>
+                    </div>
+                    <?php
+                        endif
+                    ?>
+                    
+                    <?php
+                        if (isset($_SESSION['service_head_activated'])) :
+                    ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php
+                            echo $_SESSION['service_head_activated'];
+                            unset($_SESSION['service_head_activated']);
+                        ?>
+                    </div>
+                    <?php
+                        endif
+                    ?>
+
+                    <?php
+                        if (isset($_SESSION['service_head_deactivated'])) :
+                    ?>
+                    <div class="alert alert-warning" role="alert">
+                        <?php
+                            echo $_SESSION['service_head_deactivated'];
+                            unset($_SESSION['service_head_deactivated']);
+                        ?>
+                    </div>
+                    <?php
+                        endif
+                    ?>
                     <table class="table table-bordered">
                         <thead>
                             <th>Black Head</th>
                             <th>Green Head</th>
                             <th>Sub Head</th>
+                            <th>Action</th>
                         </thead>
 
                         <tbody class="table-striped">
+                            <?php
+                                foreach($from_db as $service_head) :
+                            ?>
                             <tr>
-                                <td><?= $after_assoc['black_head'] ?></td>
-                                <td><?= $after_assoc['green_head'] ?></td>
-                                <td><?= $after_assoc['service_sub_head'] ?></td>
+                                <td><?= $service_head['black_head'] ?></td>
+                                <td><?= $service_head['green_head'] ?></td>
+                                <td><?= $service_head['service_sub_head'] ?></td>
+                                <td>
+                                    <?php if($service_head['active_status'] == 0): ?>
+                                        <a href="service_head_status.php?service_head_id=<?= $service_head['id']?>&status=1" class="btn btn-info">Active</a>
+                                    <?php else: ?>
+                                        <a href="service_head_status.php?service_head_id=<?= $service_head['id']?>&status=0" class="btn btn-warning">De-Active</a>
+                                    <?php endif ?>
+                                </td>
                             </tr>
+                            <?php
+                                endforeach
+                            ?>
                         </tbody>
                     </table>
                     </div>

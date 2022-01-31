@@ -136,13 +136,19 @@
         <div class="row">
           <div class="col-md-12">
             <?php
-                $get_service_head_query = "SELECT * FROM service_heads";
-                $from_db = mysqli_query($db_connect, $get_service_head_query);
-                $after_assoc = mysqli_fetch_assoc($from_db);
+                $get_service_head_query = "SELECT * FROM service_heads WHERE active_status = '1'";
+                $service_head_from_db = mysqli_query($db_connect, $get_service_head_query);
+                // $after_assoc = mysqli_fetch_assoc($from_db);
             ?>
             <div class="section-heading">
-              <h2><?= $after_assoc['black_head'] ?> <em><?= $after_assoc['green_head'] ?></em></h2>
-              <span><?= $after_assoc['service_sub_head'] ?></span>
+              <?php
+                foreach ($service_head_from_db as $service_head) :
+              ?>
+              <h2><?= $service_head['black_head'] ?> <em><?= $service_head['green_head'] ?></em></h2>
+              <span><?= $service_head['service_sub_head'] ?></span>
+              <?php
+                endforeach
+              ?>
             </div>
           </div>
           <?php
