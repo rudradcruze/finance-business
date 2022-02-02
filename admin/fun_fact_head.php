@@ -246,32 +246,15 @@
                         ?>
                     </div>
                     <?php endif ?>
-                    
-                    <?php
-                        // if (isset($_SESSION['service_head_activated'])) :
-                    ?>
-                    <!-- <div class="alert alert-success" role="alert"> -->
-                        <?php
-                            // echo $_SESSION['service_head_activated'];
-                            // unset($_SESSION['service_head_activated']);
-                        ?>
-                    <!-- </div> -->
-                    <?php
-                        // endif
-                    ?>
 
-                    <?php
-                        // if (isset($_SESSION['service_head_deactivated'])) :
-                    ?>
-                    <!-- <div class="alert alert-warning" role="alert"> -->
+                    <?php if (isset($_SESSION['fun_fact_head_edit_ss'])) : ?>
+                    <div class="alert alert-success" role="alert">
                         <?php
-                            // echo $_SESSION['service_head_deactivated'];
-                            // unset($_SESSION['service_head_deactivated']);
+                            echo $_SESSION['fun_fact_head_edit_ss'];
+                            unset($_SESSION['fun_fact_head_edit_ss']);
                         ?>
-                    <!-- </div> -->
-                    <?php
-                        // endif
-                    ?>
+                    </div>
+                    <?php endif ?>
 
                     <table class="table table-bordered">
                         <thead>
