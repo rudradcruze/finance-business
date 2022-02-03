@@ -90,7 +90,7 @@
             <div class="col-lg-8">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h5 class="card-title">Service Heading table</h5>
+                        <h5 class="card-title text-capitalize">Service Heading list table</h5>
                     </div>
                     <div class="card-body">
 

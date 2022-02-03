@@ -27,6 +27,9 @@
             </span></a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="banner.php">Banner</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="fun_fact_head.php">Fun-Fact Heading</a></li>
+            <li><a class="dropdown-item" href="fun_fact_counter.php">Fun-Fact Counter</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -37,6 +40,13 @@
             <li><a class="dropdown-item" href="service_item.php">Service Item</a></li>
           </ul>
         </li>
+
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Fun Fact</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="fun_fact_head.php">Heading</a></li>
+          </ul>
+        </li> -->
       </ul>
       <div class="dropdown">
         <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

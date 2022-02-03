@@ -68,7 +68,7 @@
                             $image_location = "uploads/banner/banner." . $image_new_name;
 
                             // Image Update location query
-                            $update_query = "UPDATE banners SET image_location='$image_location' WHERE id='$id_form_db'";
+                            $update_query = "UPDATE banners SET image_location = '$image_location' WHERE id='$id_form_db'";
 
                             mysqli_query($db_connect, $update_query);
 

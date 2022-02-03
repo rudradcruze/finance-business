@@ -223,21 +223,21 @@
                                             ?>
                                         </td>
                                         <td>
-                                        <div class="btn-group btn-group-sm d-flex" role="group" aria-label="Basic mixed styles example">
+                                        <div class="btn-group btn-group-sm d-flex flex-column" role="group" aria-label="Basic mixed styles example">
                                             <?php
                                                 if($banner['read_status'] == 1) :
                                             ?>
-                                                    <a href="banner_status.php?banner_id=<?= $banner['id']?>&active_status=2" class="btn btn-warning">De-active</a>
+                                                    <a href="banner_status.php?banner_id=<?= $banner['id']?>&active_status=2" class="btn btn-warning my-1">Disable</a>
                                             <?php
                                                 else:
                                             ?>
-                                                    <a href="banner_status.php?banner_id=<?= $banner['id']?>&active_status=1" class="btn btn-success">Active</a>
+                                                    <a href="banner_status.php?banner_id=<?= $banner['id']?>&active_status=1" class="btn btn-success my-1">Active</a>
 
                                             <?php
                                                 endif
                                             ?>
-                                            <a href="banner_edit.php?banner_id=<?= $banner['id']?>" class="btn btn-info">Edit</a>
-                                            <a href="banner_delete.php?banner_id=<?= $banner['id']?>" class="btn btn-danger">Delete</a>
+                                            <a href="banner_edit.php?banner_id=<?= $banner['id']?>" class="btn btn-info my-1">Edit</a>
+                                            <a href="banner_delete.php?banner_id=<?= $banner['id']?>" class="btn btn-danger my-1">Delete</a>
                                         </div>
                                         </td>
                                     </tr>
