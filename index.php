@@ -188,13 +188,19 @@
           </div>
           <div class="col-md-6 align-self-center">
             <div class="row">
+              <?php
+                $get_fun_fact_counter_query = "SELECT * FROM fun_fact_counters WHERE active_status = 1 LIMIT 4";
+                $fun_fact_counter_from_db = mysqli_query($db_connect, $get_fun_fact_counter_query);
+                foreach ($fun_fact_counter_from_db as $counter) :
+              ?>
               <div class="col-md-6">
                 <div class="count-area-content">
-                  <div class="count-digit">945</div>
-                  <div class="count-title">Work Hours</div>
+                  <div class="count-digit"><?= $counter['count_value'] ?></div>
+                  <div class="count-title"><?= $counter['count_head'] ?></div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <?php endforeach ?>
+              <!-- <div class="col-md-6">
                 <div class="count-area-content">
                   <div class="count-digit">1280</div>
                   <div class="count-title">Great Reviews</div>
@@ -211,7 +217,7 @@
                   <div class="count-digit">26</div>
                   <div class="count-title">Awards Won</div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

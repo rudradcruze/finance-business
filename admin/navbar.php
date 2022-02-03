@@ -29,6 +29,7 @@
             <li><a class="dropdown-item" href="banner.php">Banner</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="fun_fact_head.php">Fun-Fact Heading</a></li>
+            <li><a class="dropdown-item" href="fun_fact_counter.php">Fun-Fact Counter</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
