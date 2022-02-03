@@ -42,7 +42,7 @@
                                     ">
                                         <td><?= $count ?></td>
                                         <td><?= $messages['guest_name']?></td>
-                                        <td><?= $messages['guest_email']?></td>
+                                        <td><a class="text-dark" href="mailto:<?= $messages['guest_email']?>"><?= $messages['guest_email']?></a></td>
                                         <td><?= $messages['guest_message']?></td>
                                         <td>
                                             <?php

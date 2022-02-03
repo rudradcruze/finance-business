@@ -138,18 +138,13 @@
             <?php
                 $get_service_head_query = "SELECT * FROM service_heads WHERE active_status = '1'";
                 $service_head_from_db = mysqli_query($db_connect, $get_service_head_query);
-                // $after_assoc = mysqli_fetch_assoc($from_db);
             ?>
-            <div class="section-heading">
-              <?php
-                foreach ($service_head_from_db as $service_head) :
-              ?>
-              <h2><?= $service_head['black_head'] ?> <em><?= $service_head['green_head'] ?></em></h2>
-              <span><?= $service_head['service_sub_head'] ?></span>
-              <?php
-                endforeach
-              ?>
-            </div>
+            <?php foreach ($service_head_from_db as $service_head) : ?>
+              <div class="section-heading">
+                <h2><?= $service_head['black_head'] ?> <em><?= $service_head['green_head'] ?></em></h2>
+                <span><?= $service_head['service_sub_head'] ?></span>
+              </div>
+            <?php endforeach ?>
           </div>
           <?php
             $get_service_item_query = "SELECT * FROM service_items WHERE active_status = '1' ORDER BY id ASC LIMIT 3";
@@ -173,27 +168,39 @@
       </div>
     </div>
 
-    <div class="fun-facts">
+    <?php 
+        $get_fun_facts_heading_query = "SELECT * FROM fun_facts WHERE active_status = 1";
+        $from_fun_facts_heading = mysqli_query($db_connect, $get_fun_facts_heading_query);
+        foreach($from_fun_facts_heading as $fun_fact_head) :
+    ?>
+    <div class="fun-facts" style="background-image: url(<?= $fun_fact_head['image_location']?>);">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <div class="left-content">
-              <span>Lorem ipsum dolor sit amet</span>
-              <h2>Our solutions for your <em>business growth</em></h2>
-              <p>Pellentesque ultrices at turpis in vestibulum. Aenean pretium elit nec congue elementum. Nulla luctus laoreet porta. Maecenas at nisi tempus, porta metus vitae, faucibus augue. 
-              <br><br>Fusce et venenatis ex. Quisque varius, velit quis dictum sagittis, odio velit molestie nunc, ut posuere ante tortor ut neque.</p>
+              <span><?= $fun_fact_head['sub_head'] ?></span>
+              <h2><?= $fun_fact_head['white_head'] ?> <em><?= $fun_fact_head['green_head'] ?></em></h2>
+              <p><?= $fun_fact_head['paragraph_one'] ?> 
+              <br><br><?= $fun_fact_head['paragraph_two'] ?></p>
               <a href="" class="filled-button">Read More</a>
+              <?php endforeach ?>
             </div>
           </div>
           <div class="col-md-6 align-self-center">
             <div class="row">
+              <?php
+                $get_fun_fact_counter_query = "SELECT * FROM fun_fact_counters WHERE active_status = 1 LIMIT 4";
+                $fun_fact_counter_from_db = mysqli_query($db_connect, $get_fun_fact_counter_query);
+                foreach ($fun_fact_counter_from_db as $counter) :
+              ?>
               <div class="col-md-6">
                 <div class="count-area-content">
-                  <div class="count-digit">945</div>
-                  <div class="count-title">Work Hours</div>
+                  <div class="count-digit"><?= $counter['count_value'] ?></div>
+                  <div class="count-title"><?= $counter['count_head'] ?></div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <?php endforeach ?>
+              <!-- <div class="col-md-6">
                 <div class="count-area-content">
                   <div class="count-digit">1280</div>
                   <div class="count-title">Great Reviews</div>
@@ -210,7 +217,7 @@
                   <div class="count-digit">26</div>
                   <div class="count-title">Awards Won</div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
