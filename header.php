@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style.css">
 
-    <title>Login System</title>
+    <title><?=$_SESSION['title']?></title>
 </head>
 
 <body>

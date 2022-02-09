@@ -15,7 +15,7 @@
         $delete_query = "DELETE FROM fun_facts WHERE id = $fun_fact_id";
         mysqli_query($db_connect, $delete_query);
 
-        $_SESSION['fun_fact_head_delete'] = "Fun Fact Deleted";
+        $_SESSION['fun_fact_head_delete'] = "Fun Head Fact Deleted";
         header('location: fun_fact_head.php');
     }else {
         $update_status_query = "UPDATE fun_facts SET active_status = 0 WHERE id != $fun_fact_id";

@@ -341,28 +341,14 @@
                     <?php
                       }
 
-                      if (isset($_SESSION['guest_mes_email'])) {
-                    ?>
+                      if (isset($_SESSION['guest_mes_email'])) { ?>
                     <div class="alert alert-danger" role="alert">
                       <?php 
                         echo $_SESSION['guest_mes_email'];
                         unset($_SESSION['guest_mes_email']);
                       ?>
                     </div>
-                    <?php
-                      }
-
-                      if (isset($_SESSION['guest_mes_success'])) {
-                    ?>
-                    <div class="alert alert-success" role="alert">
-                      <?php 
-                        echo $_SESSION['guest_mes_success'];
-                        unset($_SESSION['guest_mes_success']);
-                      ?>
-                    </div>
-                    <?php
-                      }
-                    ?>
+                    <?php } ?>
                   </div>
                 </div>
                 <div class="row">
@@ -508,6 +494,7 @@
     <script src="frontend/assets/js/owl.js"></script>
     <script src="frontend/assets/js/slick.js"></script>
     <script src="frontend/assets/js/accordions.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script language = "text/Javascript"> 
       cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
@@ -519,6 +506,33 @@
           }
       }
     </script>
+
+  <?php if(isset($_SESSION['guest_mes_success'])) : ?>
+
+  <script>
+      const Toast = Swal.mixin({
+          toast: true,
+          position: 'bottom-start',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+          })
+
+          Toast.fire({
+              icon: 'success',
+              title: '<?=$_SESSION['guest_mes_success']?>',
+          })
+  </script>
+
+
+  <?php
+      unset($_SESSION['guest_mes_success']);
+      endif
+  ?>
 
   </body>
 </html>

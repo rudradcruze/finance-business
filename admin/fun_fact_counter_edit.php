@@ -1,6 +1,7 @@
 <?php
 
     require_once 'is_admin.php';
+    $_SESSION['title'] = "Fun Fact Counter Edit";
     require_once '../db.php';
     require_once '../header.php';
     require_once 'navbar.php';
