@@ -7,7 +7,7 @@
 
     $item_id = $_GET['item_id'];
     $get_query = "SELECT * FROM service_items WHERE id = $item_id";
-    $result_from_db = mysqli_query($db_connect, $get_query);
+    $result_from_db = mysqli_query(db_connect(), $get_query);
     $after_assoc = mysqli_fetch_assoc($result_from_db);
 ?>
 

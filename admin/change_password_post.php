@@ -26,7 +26,7 @@
                 $login_email = $_SESSION['email'];
 
                 $old_match = "SELECT password FROM users WHERE email='$login_email'";
-                $db_result = mysqli_query($db_connect, $old_match);
+                $db_result = mysqli_query(db_connect(), $old_match);
                 $after_assoc = mysqli_fetch_assoc($db_result);
 
                 $encrypted_password = md5($new_password);
@@ -34,7 +34,7 @@
                 if($encrypted_old_password == $after_assoc['password']){
                     if ($encrypted_password != $after_assoc['password']) {
                         $update_query = "UPDATE users set password='$encrypted_password' WHERE email='$login_email'";
-                        mysqli_query($db_connect, $update_query);
+                        mysqli_query(db_connect(), $update_query);
                         $_SESSION['success_change_pass'] = "Successfully Password Change!";
                         header('location: change_password.php');
                     }else {

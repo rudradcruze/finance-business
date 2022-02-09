@@ -10,7 +10,7 @@
     $error_catch = 0;
 
     $update_details_query = "UPDATE banners SET banner_sub_title='$banner_sub_title', banner_title='$banner_title', banner_detail='$banner_detail' WHERE id='$banner_id'";
-    mysqli_query($db_connect, $update_details_query);
+    mysqli_query(db_connect(), $update_details_query);
 
     if ($_FILES['banner_image']['name']) {
 
@@ -25,7 +25,7 @@
 
                 $get_location_query = "SELECT image_location FROM banners WHERE id='$banner_id'";
 
-                $image_location_from_db = mysqli_query($db_connect, $get_location_query);
+                $image_location_from_db = mysqli_query(db_connect(), $get_location_query);
                 $after_assoc_image_location = mysqli_fetch_assoc($image_location_from_db);
 
                 unlink("../" . $after_assoc_image_location['image_location']);
@@ -41,7 +41,7 @@
                 // Image Update location query
                 $update_image_query = "UPDATE banners SET image_location='$image_location' WHERE id='$banner_id'";
 
-                mysqli_query($db_connect, $update_image_query);
+                mysqli_query(db_connect(), $update_image_query);
                 $error_catch = 0;
             }else {
                 $_SESSION['banner_edit_image_file_err'] = "Your image file format must be jpg, jpeg, png, gif";

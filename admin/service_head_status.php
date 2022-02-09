@@ -14,11 +14,11 @@
 
     $update_service_head_query = "UPDATE service_heads SET active_status = 0";
 
-    mysqli_query($db_connect, $update_service_head_query);
+    mysqli_query(db_connect(), $update_service_head_query);
 
     $update_service_head_query = "UPDATE service_heads SET active_status='$status' WHERE id='$service_head_id'";
 
-    mysqli_query($db_connect, $update_service_head_query);
+    mysqli_query(db_connect(), $update_service_head_query);
     
     header('location: service_head.php');
 ?>

@@ -5,9 +5,7 @@
     require_once '../header.php';
     require_once 'navbar.php';
     require_once '../db.php';
-
-    $get_query = "SELECT * FROM service_items";
-    $from_db = mysqli_query($db_connect, $get_query);
+    
 ?>
 
 <section>
@@ -85,7 +83,7 @@
                         </thead>
 
                         <tbody class="table-striped">
-                            <?php foreach($from_db as $service_item): ?>
+                            <?php foreach(get_all('service_items') as $service_item): ?>
                             <tr>
                                 <td><?= $service_item['service_item_head'] ?></td>
                                 <td><?= $service_item['service_item_detail'] ?></td>
@@ -99,7 +97,7 @@
                                         <?php
                                             else:
                                             $get_activated_query = "SELECT COUNT(*) AS total_activate FROM service_items WHERE active_status = 1";
-                                            $result_activated_db = mysqli_query($db_connect, $get_activated_query);
+                                            $result_activated_db = mysqli_query(db_connect(), $get_activated_query);
                                             $after_assoc_activated = mysqli_fetch_assoc($result_activated_db);
                                             if($after_assoc_activated['total_activate'] < 3) :
                                         ?>

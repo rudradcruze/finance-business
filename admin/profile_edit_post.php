@@ -25,7 +25,7 @@
 
                     $update_query = "UPDATE users SET f_name='$f_name', u_name='$u_name', mobile='$mobile' WHERE email='$login_email'";
 
-                    mysqli_query($db_connect, $update_query);
+                    mysqli_query(db_connect(), $update_query);
                     $_SESSION['success_profile_msg'] = "Update Successful";
                     header('location: profile.php');
 

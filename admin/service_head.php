@@ -6,8 +6,6 @@
     require_once 'navbar.php';
     require_once '../db.php';
 
-    $get_query = "SELECT * FROM service_heads";
-    $from_db = mysqli_query($db_connect, $get_query);
 ?>
 
 <section>
@@ -104,7 +102,7 @@
 
                         <tbody class="table-striped">
                             <?php
-                                foreach($from_db as $service_head) :
+                                foreach(get_all('service_heads') as $service_head) :
                             ?>
                             <tr>
                                 <td><?= $service_head['black_head'] ?></td>

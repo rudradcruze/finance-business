@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                         $encrypted_password = md5($password);
                         //  Insert query
                         $checking_Query = "SELECT COUNT(*) AS check_user FROM users WHERE email = '$validate_email'";
-                        $checking_db_result = mysqli_query($db_connect, $checking_Query);
+                        $checking_db_result = mysqli_query(db_connect(), $checking_Query);
         
                         $checking_fetch_result = mysqli_fetch_assoc($checking_db_result);
         
@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
                             //  Insert query
                             $insert_query = "INSERT INTO users (f_name, u_name, mobile, email, password) VALUES ('$fullName', '$userName', '$numberNumber', '$email', '$encrypted_password')";
         
-                            mysqli_query($db_connect, $insert_query);
+                            mysqli_query(db_connect(), $insert_query);
                             $_SESSION['suss_msg'] = "Congratulation! You Successfully Registered.";
                             header('location: register.php');
                         } else {
