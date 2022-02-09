@@ -233,7 +233,7 @@ a.border-button:hover {
 /* Header Style */
 header {
 	position: absolute;
-	z-index: 99999;
+	z-index: 99;
 	width: 100%;
 	background-color: transparent!important;
 	height: 80px;

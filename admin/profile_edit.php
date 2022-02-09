@@ -1,6 +1,7 @@
 <?php
 
     require_once 'is_admin.php';
+    $_SESSION['title'] = "Profile Edit";
     require_once '../header.php';
     require_once 'navbar.php';
     require_once '../db.php';

@@ -1,5 +1,6 @@
 <?php
     require_once 'is_admin.php';
+    $_SESSION['title'] = "Profile";
     require_once '../db.php';
 
     $black_heading = $_POST['black_heading'];
