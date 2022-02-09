@@ -1,6 +1,7 @@
 <?php
 
     require_once 'is_admin.php';
+    $_SESSION['title'] = "Fun fact head";
     require_once '../header.php';
     require_once 'navbar.php';
     require_once '../db.php';
@@ -220,106 +221,69 @@
                     </div>
                     <div class="card-body">
 
-                    <?php if (isset($_SESSION['fun_fact_head_success'])) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php
-                            echo $_SESSION['fun_fact_head_success'];
-                            unset($_SESSION['fun_fact_head_success']);
-                        ?>
-                    </div>
-                    <?php endif ?>
-
-                    <?php if (isset($_SESSION['fun_fact_head_delete'])) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php
-                            echo $_SESSION['fun_fact_head_delete'];
-                            unset($_SESSION['fun_fact_head_delete']);
-                        ?>
-                    </div>
-                    <?php endif ?>
-
-                    <?php if (isset($_SESSION['fun_fact_activated'])) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php
-                            echo $_SESSION['fun_fact_activated'];
-                            unset($_SESSION['fun_fact_activated']);
-                        ?>
-                    </div>
-                    <?php endif ?>
-
-                    <?php if (isset($_SESSION['fun_fact_head_edit_ss'])) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php
-                            echo $_SESSION['fun_fact_head_edit_ss'];
-                            unset($_SESSION['fun_fact_head_edit_ss']);
-                        ?>
-                    </div>
-                    <?php endif ?>
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Sl:</th>
-                                <th>Sub Head</th>
-                                <th>White Head</th>
-                                <th>Green Head</th>
-                                <th>Paragraph One</th>
-                                <th>Paragraph Two</th>
-                                <th>Image</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <?php foreach ($from_db as $key => $fun_fact_head) : ?>
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td><?= $key + 1 ?></td>
-                                    <td><?= $fun_fact_head['sub_head'] ?></td>
-                                    <td><?= $fun_fact_head['white_head'] ?></td>
-                                    <td><?= $fun_fact_head['green_head'] ?></td>
-                                    <td><?= $fun_fact_head['paragraph_one'] ?></td>
-                                    <td><?= $fun_fact_head['paragraph_two'] ?></td>
-                                    <td>
-                                        <img style="width: 120px;" src="../<?= $fun_fact_head['image_location'] ?>" alt="Image Location">
-                                    </td>
-                                    <td>
-                                        <?php if($fun_fact_head['active_status'] == 1): ?>
-                                            <span class="badge rounded bg-success">Active</span>
-                                        <?php else: ?>
-                                                <span class="badge rounded text-dark bg-warning">Disable</span>
-                                        <?php endif ?>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm d-flex flex-column" role="group" aria-label="Basic mixed styles example">
-                                            <?php 
-                                                if($fun_fact_head['active_status'] == 1):
-                                                $_SESSION['delete_disable'] = "disabled";
-                                            ?>
-                                                <a href="" class="btn btn-warning my-1 disabled">Disable</a>
-                                            <?php
-                                                else:
-                                                unset($_SESSION['delete_disable']);    
-                                            ?>
-                                                <a href="fun_fact_status.php?fun_fact_id=<?= $fun_fact_head['id'] ?>&status=1" class="btn btn-success my-1">Activate</a>
-                                            <?php endif ?>
-                                            <a href="fun_fact_head_edit.php?fun_fact_id=<?= $fun_fact_head['id'] ?>" class="btn btn-info my-1">Edit</a>
-                                            <a href="<?php
-                                                if (!isset($_SESSION['delete_disable'])) {
-                                                    echo "fun_fact_status.php?fun_fact_id =" . $fun_fact_head['id'] . "&status=2    ";
-                                                }
-                                            ?>" class="btn btn-danger my-1 <?php
-                                                if ($_SESSION['delete_disable']) {
-                                                    echo $_SESSION['delete_disable'];
-                                                }
-                                            ?>">Delete</a>
-                                        </div>
-                                    </td>
+                                    <th>Sl:</th>
+                                    <th>Sub Head</th>
+                                    <th>White Head</th>
+                                    <th>Green Head</th>
+                                    <th>Paragraph One</th>
+                                    <th>Paragraph Two</th>
+                                    <th>Image</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody>
+
+                                <?php foreach ($from_db as $key => $fun_fact_head) : ?>
+                                    <tr>
+                                        <td><?= $key + 1 ?></td>
+                                        <td><?= $fun_fact_head['sub_head'] ?></td>
+                                        <td><?= $fun_fact_head['white_head'] ?></td>
+                                        <td><?= $fun_fact_head['green_head'] ?></td>
+                                        <td><?= $fun_fact_head['paragraph_one'] ?></td>
+                                        <td><?= $fun_fact_head['paragraph_two'] ?></td>
+                                        <td>
+                                            <img style="width: 120px;" src="../<?= $fun_fact_head['image_location'] ?>" alt="Image Location">
+                                        </td>
+                                        <td>
+                                            <?php if($fun_fact_head['active_status'] == 1): ?>
+                                                <span class="badge rounded bg-success">Active</span>
+                                            <?php else: ?>
+                                                    <span class="badge rounded text-dark bg-warning">Disable</span>
+                                            <?php endif ?>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm d-flex flex-column" role="group" aria-label="Basic mixed styles example">
+                                                <?php 
+                                                    if($fun_fact_head['active_status'] == 1):
+                                                    $_SESSION['delete_disable'] = "disabled";
+                                                ?>
+                                                    <a href="" class="btn btn-warning my-1 disabled">Disable</a>
+                                                <?php
+                                                    else:
+                                                    unset($_SESSION['delete_disable']);    
+                                                ?>
+                                                    <a href="fun_fact_status.php?fun_fact_id=<?= $fun_fact_head['id'] ?>&status=1" class="btn btn-success my-1">Activate</a>
+                                                <?php endif ?>
+                                                <a href="fun_fact_head_edit.php?fun_fact_id=<?= $fun_fact_head['id'] ?>" class="btn btn-info my-1">Edit</a>
+                                                <button type="button" value="<?php
+                                                    if (!isset($_SESSION['delete_disable'])) {
+                                                        echo "fun_fact_status.php?fun_fact_id=" . $fun_fact_head['id'] . "&status=2";
+                                                    }?>" class="deleteBtn btn btn-danger my-1 <?php
+                                                    if ($_SESSION['delete_disable']) {
+                                                        echo $_SESSION['delete_disable'];
+                                                    }
+                                                ?>">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -327,6 +291,119 @@
     </div>
 </section>
 
-<?php
-    require_once '../footer.php';
-?>
+<?php require_once '../footer.php'; ?>
+<script>
+    <?php if(isset($_SESSION['fun_fact_head_success'])) : ?>
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: '<?=$_SESSION['fun_fact_head_success']?>'
+        })
+
+    <?php
+        unset($_SESSION['fun_fact_head_success']);
+        endif
+    ?>
+
+    <?php if(isset($_SESSION['fun_fact_head_delete'])) : ?>
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+            iconColor: 'rgb(221, 51, 51)',
+            icon: 'info',
+            title: '<?= $_SESSION['fun_fact_head_delete'] ?>',
+        })
+    <?php 
+        endif;
+        unset($_SESSION['fun_fact_head_delete']);
+    ?>
+
+    <?php if(isset($_SESSION['fun_fact_activated'])) : ?>
+
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: '<?= $_SESSION['fun_fact_activated']?>'
+        })
+
+    <?php 
+        endif;
+        unset($_SESSION['fun_fact_activated']);
+    ?>
+
+    <?php if(isset($_SESSION['fun_fact_head_edit_ss'])) : ?>
+
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: '<?= $_SESSION['fun_fact_head_edit_ss']?>'
+        })
+
+    <?php 
+        endif;
+        unset($_SESSION['fun_fact_head_edit_ss']);
+    ?>
+
+    // Fun Fact Delete 
+    $('.deleteBtn').click(function(){
+        var link = $(this).val();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if(result.isConfirmed){
+                window.location.href = link;
+                // alert(link);
+            }
+        })
+    });
+</script>

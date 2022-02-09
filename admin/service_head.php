@@ -1,6 +1,7 @@
 <?php
 
     require_once 'is_admin.php';
+    $_SESSION['title'] = "Service head";
     require_once '../header.php';
     require_once 'navbar.php';
     require_once '../db.php';
@@ -93,57 +94,6 @@
                         <h5 class="card-title text-capitalize">Service Heading list table</h5>
                     </div>
                     <div class="card-body">
-
-                    <?php
-                        if (isset($_SESSION['service_heading_success'])) :
-                    ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php
-                            echo $_SESSION['service_heading_success'];
-                            unset($_SESSION['service_heading_success']);
-                        ?>
-                    </div>
-                    <?php
-                        endif
-                    ?>
-                    <?php
-                        if (isset($_SESSION['service_heading_success'])) :
-                    ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php
-                            echo $_SESSION['service_heading_success'];
-                            unset($_SESSION['service_heading_success']);
-                        ?>
-                    </div>
-                    <?php
-                        endif
-                    ?>
-                    
-                    <?php
-                        if (isset($_SESSION['service_head_activated'])) :
-                    ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php
-                            echo $_SESSION['service_head_activated'];
-                            unset($_SESSION['service_head_activated']);
-                        ?>
-                    </div>
-                    <?php
-                        endif
-                    ?>
-
-                    <?php
-                        if (isset($_SESSION['service_head_deactivated'])) :
-                    ?>
-                    <div class="alert alert-warning" role="alert">
-                        <?php
-                            echo $_SESSION['service_head_deactivated'];
-                            unset($_SESSION['service_head_deactivated']);
-                        ?>
-                    </div>
-                    <?php
-                        endif
-                    ?>
                     <table class="table table-bordered">
                         <thead>
                             <th>Black Head</th>
@@ -180,6 +130,77 @@
     </div>
 </section>
 
-<?php
-    require_once '../footer.php';
+<?php require_once '../footer.php'; ?>
+
+<script>
+    <?php if(isset($_SESSION['service_heading_success'])) : ?>
+
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: '<?= $_SESSION['service_heading_success']?>'
+        })
+
+    <?php 
+        endif;
+        unset($_SESSION['service_heading_success']);
+    ?>
+
+    <?php if(isset($_SESSION['service_head_activated'])) : ?>
+
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: 'success',
+        title: '<?= $_SESSION['service_head_activated']?>'
+    })
+
+<?php 
+    endif;
+    unset($_SESSION['service_head_activated']);
 ?>
+
+<?php if(isset($_SESSION['service_head_deactivated'])) : ?>
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+
+    Toast.fire({
+        iconColor: '#f8bb86',
+        icon: 'info',
+        title: '<?= $_SESSION['service_head_deactivated'] ?>',
+    })
+<?php 
+    endif;
+    unset($_SESSION['service_head_deactivated']);
+?>
+</script>
