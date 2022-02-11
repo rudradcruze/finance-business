@@ -37,9 +37,9 @@
                     if (in_array($image_extension, $allow_extension)) {
                         $insert_query = "INSERT INTO service_items (service_item_head, service_item_detail, image_location) VALUES ('$service_item_head', '$service_item_detail', 'Primary Location')";
 
-                        mysqli_query($db_connect, $insert_query);
+                        mysqli_query(db_connect(), $insert_query);
 
-                        $id_form_db = mysqli_insert_id($db_connect);
+                        $id_form_db = mysqli_insert_id(db_connect());
 
                         $image_new_name = $id_form_db . '.' . $image_extension;
 
@@ -52,7 +52,7 @@
                         // Image Update location query
                         $update_query = "UPDATE service_items SET image_location='$image_location' WHERE id='$id_form_db'";
 
-                        mysqli_query($db_connect, $update_query);
+                        mysqli_query(db_connect(), $update_query);
 
                         $_SESSION['service_heading_success'] = "Service Item Successfully Created!";
                         header('location: service_item.php');

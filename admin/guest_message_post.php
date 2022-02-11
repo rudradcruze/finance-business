@@ -29,7 +29,7 @@
         if($guest_name_check == 1 && $guest_name_check_num == 0 && $guest_name_check_pattern == 0){
             $validate_email = filter_var($guest_email, FILTER_VALIDATE_EMAIL);
             if ($validate_email) {
-                mysqli_query($db_connect, $insert_query);
+                mysqli_query(db_connect(), $insert_query);
                 $_SESSION['guest_mes_success'] = "Message send successfully.";
                 header('location: ../index.php#callback-form');
             }else {

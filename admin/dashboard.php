@@ -4,10 +4,6 @@
     require_once('../header.php');
     require_once('navbar.php');
     require_once('../db.php');
-
-    $get_query = "SELECT f_name, u_name, mobile, email FROM users";
-    $from_db = mysqli_query($db_connect, $get_query);
-    $after_assoc = mysqli_fetch_assoc($from_db);
 ?>
 
     <section>
@@ -30,7 +26,7 @@
                                 <tbody>
                                     <?php
                                         $count = 1;
-                                        foreach ($from_db as $user) {
+                                        foreach (get_all('users') as $user) {
                                     ?>
                                     <tr>
                                         <td><?= $count ?></td>

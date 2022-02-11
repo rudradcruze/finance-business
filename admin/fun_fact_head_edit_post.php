@@ -46,7 +46,7 @@
     }else {
         $error_catch = true;
         $update_details_query = "UPDATE fun_facts SET sub_head='$sub_head', white_head='$white_head', green_head='$green_head', paragraph_one='$paragraph_one', paragraph_two='$paragraph_two' WHERE id='$fun_fact_id'";
-        mysqli_query($db_connect, $update_details_query);
+        mysqli_query(db_connect(), $update_details_query);
     }
 
     if($_FILES['fun_fact_bg']['name']) {
@@ -75,7 +75,7 @@
         }else {
             
             $get_location_query = "SELECT image_location FROM fun_facts WHERE id='$fun_fact_id'";
-            $image_location_from_db = mysqli_query($db_connect, $get_location_query);
+            $image_location_from_db = mysqli_query(db_connect(), $get_location_query);
             $after_assoc_image_location = mysqli_fetch_assoc($image_location_from_db);
 
             unlink("../" . $after_assoc_image_location['image_location']);
@@ -90,7 +90,7 @@
 
             $update_image_query = "UPDATE fun_facts SET image_location='$image_location' WHERE id='$fun_fact_id'";
 
-            mysqli_query($db_connect, $update_image_query);
+            mysqli_query(db_connect(), $update_image_query);
             $error_catch = true;
         }
     }

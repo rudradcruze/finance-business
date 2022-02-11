@@ -18,6 +18,6 @@
         $_SESSION['counter_deleted'] = "Counter deleted";
     }
 
-    mysqli_query($db_connect, $update_delete_query);
+    mysqli_query(db_connect(), $update_delete_query);
     header('location: fun_fact_counter.php');
 ?>

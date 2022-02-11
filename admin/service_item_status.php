@@ -16,6 +16,6 @@
         $_SESSION['service_item_deleted'] = "Service item deleted";
     }
 
-    mysqli_query($db_connect, $status_query);
+    mysqli_query(db_connect(), $status_query);
     header('location: service_item.php');
 ?>

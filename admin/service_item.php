@@ -5,9 +5,8 @@
     require_once '../header.php';
     require_once 'navbar.php';
     require_once '../db.php';
+    require_once 'alert_display.php';
 
-    $get_query = "SELECT * FROM service_items";
-    $from_db = mysqli_query($db_connect, $get_query);
 ?>
 
 <section>
@@ -85,7 +84,7 @@
                         </thead>
 
                         <tbody class="table-striped">
-                            <?php foreach($from_db as $service_item): ?>
+                            <?php foreach(get_all('service_items') as $service_item): ?>
                             <tr>
                                 <td><?= $service_item['service_item_head'] ?></td>
                                 <td><?= $service_item['service_item_detail'] ?></td>
@@ -99,7 +98,7 @@
                                         <?php
                                             else:
                                             $get_activated_query = "SELECT COUNT(*) AS total_activate FROM service_items WHERE active_status = 1";
-                                            $result_activated_db = mysqli_query($db_connect, $get_activated_query);
+                                            $result_activated_db = mysqli_query(db_connect(), $get_activated_query);
                                             $after_assoc_activated = mysqli_fetch_assoc($result_activated_db);
                                             if($after_assoc_activated['total_activate'] < 3) :
                                         ?>
@@ -223,22 +222,6 @@
         endif;
         unset($_SESSION['service_item_deleted']);
     ?>
-
-// Service item Delete 
-$('.deleteBtn').click(function(){
-    var link = $(this).val();
-    Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if(result.isConfirmed){
-            window.location.href = link;
-        }
-    })
-});
 </script>
+
+<?php alert_delete_warning('deleteBtn');?>

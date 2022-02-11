@@ -47,10 +47,13 @@
           </div>
           <div class="col-md-4">
             <ul class="right-icons">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              <?php
+                $get_all_media = "SELECT * FROM social_medias WHERE active_status = 1";
+                $db_media = mysqli_query(db_connect(), $get_all_media);
+                foreach ($db_media as $key => $icon) :
+              ?>
+                <li><a target="_blank"  href="<?=$icon['media_url']?>"><i class="fa <?=$icon['media_icon']?>"></i></a></li>
+              <?php endforeach ?>
             </ul>
           </div>
         </div>
@@ -96,7 +99,7 @@
           <!-- Item -->
           <?php
             $get_query = "SELECT * FROM banners WHERE read_status='1'";
-            $banner_from_db = mysqli_query($db_connect, $get_query);
+            $banner_from_db = mysqli_query(db_connect(), $get_query);
 
             foreach($banner_from_db as $banners):
           ?>
@@ -137,7 +140,7 @@
           <div class="col-md-12">
             <?php
                 $get_service_head_query = "SELECT * FROM service_heads WHERE active_status = '1'";
-                $service_head_from_db = mysqli_query($db_connect, $get_service_head_query);
+                $service_head_from_db = mysqli_query(db_connect(), $get_service_head_query);
             ?>
             <?php foreach ($service_head_from_db as $service_head) : ?>
               <div class="section-heading">
@@ -148,7 +151,7 @@
           </div>
           <?php
             $get_service_item_query = "SELECT * FROM service_items WHERE active_status = '1' ORDER BY id ASC LIMIT 3";
-            $service_item_from_db = mysqli_query($db_connect, $get_service_item_query);
+            $service_item_from_db = mysqli_query(db_connect(), $get_service_item_query);
             foreach ($service_item_from_db as $service_items) :
           ?>
           <div class="col-md-4">
@@ -170,7 +173,7 @@
 
     <?php 
         $get_fun_facts_heading_query = "SELECT * FROM fun_facts WHERE active_status = 1";
-        $from_fun_facts_heading = mysqli_query($db_connect, $get_fun_facts_heading_query);
+        $from_fun_facts_heading = mysqli_query(db_connect(), $get_fun_facts_heading_query);
         foreach($from_fun_facts_heading as $fun_fact_head) :
     ?>
     <div class="fun-facts" style="background-image: url(<?= $fun_fact_head['image_location']?>);">
@@ -190,7 +193,7 @@
             <div class="row">
               <?php
                 $get_fun_fact_counter_query = "SELECT * FROM fun_fact_counters WHERE active_status = 1 LIMIT 4";
-                $fun_fact_counter_from_db = mysqli_query($db_connect, $get_fun_fact_counter_query);
+                $fun_fact_counter_from_db = mysqli_query(db_connect(), $get_fun_fact_counter_query);
                 foreach ($fun_fact_counter_from_db as $counter) :
               ?>
               <div class="col-md-6">
@@ -443,10 +446,12 @@
             <h4>Finance Business</h4>
             <p>Vivamus tellus mi. Nulla ne cursus elit,vulputate. Sed ne cursus augue hasellus lacinia sapien vitae.</p>
             <ul class="social-icons">
-              <li><a rel="nofollow" href="https://fb.com/templatemo" target="_blank"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+            <?php
+              $get_all_media = "SELECT * FROM social_medias WHERE active_status = 1";
+              $db_media = mysqli_query(db_connect(), $get_all_media);
+              foreach ($db_media as $key => $icon) : ?>
+                <li><a target="_blank" href="<?=$icon['media_url']?>"><i class="fa <?=$icon['media_icon']?>"></i></a></li>
+            <?php endforeach ?>
             </ul>
           </div>
           <div class="col-md-4 footer-item">
@@ -527,7 +532,6 @@
               title: '<?=$_SESSION['guest_mes_success']?>',
           })
   </script>
-
 
   <?php
       unset($_SESSION['guest_mes_success']);

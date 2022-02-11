@@ -13,7 +13,7 @@
         $update_delete_message_query = "DELETE FROM guest_messages WHERE id='$message_id'";
     }
 
-    mysqli_query($db_connect, $update_delete_message_query);
+    mysqli_query(db_connect(), $update_delete_message_query);
     header('location: guest_message.php');
 
 ?>

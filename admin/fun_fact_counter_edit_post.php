@@ -23,7 +23,7 @@
 
         if ($flag) {
             $update_counter_query = "UPDATE fun_fact_counters SET count_value = '$count_value', count_head = '$count_head' WHERE id = $fun_fact_id";
-            mysqli_query($db_connect, $update_counter_query);
+            mysqli_query(db_connect(), $update_counter_query);
             $_SESSION['counter_updated'] = "Counter updated";
             header('location: fun_fact_counter.php');
         }else {

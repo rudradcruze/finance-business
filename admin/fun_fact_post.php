@@ -80,9 +80,9 @@
         }else{
             $insert_query = "INSERT INTO fun_facts (sub_head, white_head, green_head, paragraph_one, paragraph_two, image_location) VALUES ('$sub_head', '$white_head', '$green_head', '$paragraph_one', '$paragraph_two', 'Primary Location')";
 
-            mysqli_query($db_connect, $insert_query);
+            mysqli_query(db_connect(), $insert_query);
 
-            $get_image_id = mysqli_insert_id($db_connect);
+            $get_image_id = mysqli_insert_id(db_connect());
             $image_new_name = $get_image_id . '.' . $image_extension;
             
             $save_location = "../uploads/fun-fact/fun-fact." . $image_new_name;
@@ -90,7 +90,7 @@
             $image_location = "uploads/fun-fact/fun-fact." . $image_new_name;
 
             $update_image_location_query = "UPDATE fun_facts SET image_location = '$image_location' WHERE id = $get_image_id";
-            mysqli_query($db_connect, $update_image_location_query);
+            mysqli_query(db_connect(), $update_image_location_query);
             $_SESSION['fun_fact_head_success'] = "Fun Fact Head Successfully Added";
 
             // Unset All fill values
