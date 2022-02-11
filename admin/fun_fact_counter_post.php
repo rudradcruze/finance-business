@@ -31,7 +31,7 @@
     if ($flag) {
 
         $inset_counter_query = "INSERT INTO fun_fact_counters (count_head, count_value) VALUES ('$count_head', '$count_value')";
-        mysqli_query($db_connect, $inset_counter_query);
+        mysqli_query(db_connect(), $inset_counter_query);
 
         $_SESSION['counter_add_successful'] = "Counter Successfully Added";
 

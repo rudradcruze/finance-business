@@ -12,6 +12,6 @@
     }
 
     $update_message_query = "UPDATE banners SET read_status='$active_status' WHERE id='$banner_id'";
-    mysqli_query($db_connect, $update_message_query);
+    mysqli_query(db_connect(), $update_message_query);
     header('location: banner.php');
 ?>

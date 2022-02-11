@@ -6,11 +6,8 @@
     require_once 'navbar.php';
     require_once '../db.php';
 
-    $get_query = "SELECT * FROM fun_fact_counters";
-    $from_db = mysqli_query($db_connect, $get_query);
-
     $get_counter_limit_count = "SELECT COUNT(*) as get_count FROM fun_fact_counters WHERE active_status = 1";
-    $get_count_from_db = mysqli_query($db_connect, $get_counter_limit_count);
+    $get_count_from_db = mysqli_query(db_connect(), $get_counter_limit_count);
     $after_count_assoc = mysqli_fetch_assoc($get_count_from_db);
 ?>
 
@@ -172,7 +169,7 @@
 
                         <tbody>
 
-                            <?php foreach ($from_db as $key => $fun_fact_counter) : ?>
+                            <?php foreach (get_all('fun_fact_counters') as $key => $fun_fact_counter) : ?>
                                 <tr>
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $fun_fact_counter['count_value'] ?></td>

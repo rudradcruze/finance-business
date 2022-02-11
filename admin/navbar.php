@@ -19,7 +19,7 @@
               <?php
                 require_once '../db.php';
                 $get_message_notification_query = "SELECT COUNT(*) AS message_notification FROM guest_messages WHERE read_status='1'";
-                $db_result = mysqli_query($db_connect, $get_message_notification_query);
+                $db_result = mysqli_query(db_connect(), $get_message_notification_query);
                 $after_assoc = mysqli_fetch_assoc($db_result);
                 
                 echo $after_assoc['message_notification'];
@@ -30,6 +30,8 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="fun_fact_head.php">Fun-Fact Heading</a></li>
             <li><a class="dropdown-item" href="fun_fact_counter.php">Fun-Fact Counter</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="social_media.php">Social Media</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

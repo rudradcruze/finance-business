@@ -38,7 +38,7 @@
             }else {
                 $insert_query = "INSERT INTO service_heads (black_head, green_head, service_sub_head) VALUES ('$black_heading', '$green_heading', '$service_sub_head')";
 
-                mysqli_query($db_connect, $insert_query);
+                mysqli_query(db_connect(), $insert_query);
                 $_SESSION['service_heading_success'] = "Service Head Successfully added";
                 header('location: service_head.php');
             }

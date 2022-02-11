@@ -8,7 +8,7 @@
     $fun_fact_id = $_GET['fun_fact_id'];
 
     $get_query = "SELECT * FROM fun_facts WHERE id='$fun_fact_id'";
-    $fun_fact_from_db = mysqli_query($db_connect, $get_query);
+    $fun_fact_from_db = mysqli_query(db_connect(), $get_query);
     $after_assoc = mysqli_fetch_assoc($fun_fact_from_db);
 ?>
 

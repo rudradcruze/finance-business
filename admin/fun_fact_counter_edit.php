@@ -9,7 +9,7 @@
     $fun_fact_id = $_GET['fun_fact_id'];
 
     $get_query = "SELECT * FROM fun_fact_counters WHERE id='$fun_fact_id'";
-    $counter_from_db = mysqli_query($db_connect, $get_query);
+    $counter_from_db = mysqli_query(db_connect(), $get_query);
     $after_assoc = mysqli_fetch_assoc($counter_from_db);
 ?>
 

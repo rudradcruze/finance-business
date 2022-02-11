@@ -4,9 +4,6 @@
     require_once('../header.php');
     require_once('navbar.php');
     require_once('../db.php');
-
-    $get_query = "SELECT * FROM guest_messages";
-    $from_db = mysqli_query($db_connect, $get_query);
 ?>
 
 <section>
@@ -34,7 +31,7 @@
                                                 <label class="btn btn-primary btn-sm" for="select-all">Select All</label>
                                             </td>
                                         </tr>
-                                        <?php foreach ($from_db as $key => $messages) : ?>
+                                        <?php foreach (get_all('guest_messages') as $key => $messages) : ?>
                                         <tr class="
                                             <?php 
                                                 if($messages['read_status'] == 1){

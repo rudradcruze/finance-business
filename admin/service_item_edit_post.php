@@ -20,7 +20,7 @@
 
     if($flag){
         $update_details_query = "UPDATE service_items SET service_item_head = '$service_item_head', service_item_detail = '$service_item_detail' WHERE id = $item_id";
-        mysqli_query($db_connect, $update_details_query);
+        mysqli_query(db_connect(), $update_details_query);
         // header('location: service_item.php');
 
         if($_FILES['service_image']['name']) {
@@ -45,7 +45,7 @@
 
                 $get_location_query = "SELECT image_location FROM service_items WHERE id='$item_id'";
 
-                $image_location_from_db = mysqli_query($db_connect, $get_location_query);
+                $image_location_from_db = mysqli_query(db_connect(), $get_location_query);
                 $after_assoc_image_location = mysqli_fetch_assoc($image_location_from_db);
 
                 unlink("../" . $after_assoc_image_location['image_location']);
@@ -61,7 +61,7 @@
                 // Image Update location query
                 $update_image_query = "UPDATE service_items SET image_location='$image_location' WHERE id='$item_id'";
 
-                mysqli_query($db_connect, $update_image_query);
+                mysqli_query(db_connect(), $update_image_query);
                 header('location: service_item.php');
             }else {
                 header('location: service_item_edit.php?item_id='. $item_id);

@@ -6,8 +6,6 @@
     require_once 'navbar.php';
     require_once '../db.php';
 
-    $get_query = "SELECT * FROM fun_facts";
-    $from_db = mysqli_query($db_connect, $get_query);
 ?>
 
 <section>
@@ -238,7 +236,7 @@
 
                             <tbody>
 
-                                <?php foreach ($from_db as $key => $fun_fact_head) : ?>
+                                <?php foreach (get_all('fun_facts') as $key => $fun_fact_head) : ?>
                                     <tr>
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $fun_fact_head['sub_head'] ?></td>
