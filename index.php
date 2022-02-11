@@ -47,10 +47,13 @@
           </div>
           <div class="col-md-4">
             <ul class="right-icons">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              <?php
+                $get_all_media = "SELECT * FROM social_medias WHERE active_status = 1";
+                $db_media = mysqli_query(db_connect(), $get_all_media);
+                foreach ($db_media as $key => $icon) :
+              ?>
+                <li><a target="_blank"  href="<?=$icon['media_url']?>"><i class="fa <?=$icon['media_icon']?>"></i></a></li>
+              <?php endforeach ?>
             </ul>
           </div>
         </div>
@@ -443,10 +446,12 @@
             <h4>Finance Business</h4>
             <p>Vivamus tellus mi. Nulla ne cursus elit,vulputate. Sed ne cursus augue hasellus lacinia sapien vitae.</p>
             <ul class="social-icons">
-              <li><a href="https://fb.com/templatemo" target="_blank"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+            <?php
+              $get_all_media = "SELECT * FROM social_medias WHERE active_status = 1";
+              $db_media = mysqli_query(db_connect(), $get_all_media);
+              foreach ($db_media as $key => $icon) : ?>
+                <li><a target="_blank" href="<?=$icon['media_url']?>"><i class="fa <?=$icon['media_icon']?>"></i></a></li>
+            <?php endforeach ?>
             </ul>
           </div>
           <div class="col-md-4 footer-item">
@@ -527,7 +532,6 @@
               title: '<?=$_SESSION['guest_mes_success']?>',
           })
   </script>
-
 
   <?php
       unset($_SESSION['guest_mes_success']);

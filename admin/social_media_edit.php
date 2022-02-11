@@ -1,55 +1,53 @@
 <?php
     require_once 'is_admin.php';
-    $_SESSION['title'] = "Social Media";
-    require_once '../header.php';
+    $_SESSION['title'] = "Social Edit Media";
     require_once '../db.php';
-    require_once 'navbar.php';
-    require_once 'alert_display.php';
+    require_once  '../header.php';
+    require_once  'navbar.php';
+
+    $media_id = $_GET['media_id'];
+    $after_assoc = mysqli_fetch_assoc(get_all('social_medias'));
 ?>
 
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 mt-5">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title text-capitalize">Banner add form</h5>
+            <div class="col-lg-6 mx-auto">
+                <div class="card mt-3">
+                    <div class="card-header bg-info">
+                        <h5 class="text-capitalize">Social Media Edit</h5>
                     </div>
                     <div class="card-body">
-                        <form action="social_media_post.php" method="post">
+                        <form action="social_media_edit_post.php" method="post">
                             <div class="mb-3">
-                                <label class="form-label text-capitalize text-primary">Social Media Url</label>
-                                <input type="url" name="media_url" class="form-control <?php
-                                    if(isset($_SESSION['media_url_null'])) {
+                                <label class="form-label text-capitalize">Social Link</label>
+                                <input value="<?=$after_assoc['media_url']?>" type="url" name="media_edit_url" class="form-control <?php
+                                    if(isset($_SESSION['media_edit_url_null'])) {
                                         echo "is-invalid";
+                                        unset($_SESSION['media_edit_url_null']);
                                     }
                                 ?>">
-                                <?php if(isset($_SESSION['media_url_null'])): ?>
+                                <input type="text" name="media_id" hidden value="<?=$media_id?>">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label text-capitalize">Social Icon</label>
+                                <input value="<?=$after_assoc['media_icon']?>" type="text" required name="media_edit_icon" id="social_icon" readonly class="form-control <?php
+                                    if(isset($_SESSION['media_edit_icon_null'])){
+                                        echo "is-invalid";
+                                        unset($_SESSION['media_edit_icon_null']);
+                                    }
+                                ?>">
+                                <?php if(isset($_SESSION['media_edit_icon_null'])): ?>
                                     <small class="text-danger">
                                         <?php
-                                            echo $_SESSION['media_url_null'];
-                                            unset($_SESSION['media_url_null']);
+                                            echo $_SESSION['media_edit_icon_null'];
+                                            unset($_SESSION['media_edit_icon_null']);
                                         ?>
                                     </small>
                                 <?php endif ?>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label text-capitalize text-primary">Social Icon</label>
-                                <input type="text" required name="media_icon" id="social_icon" readonly class="form-control <?php
-                                    if(isset($_SESSION['media_icon_null'])){
-                                        echo "is-invalid";
-                                    }
-                                ?>">
-                                <?php if(isset($_SESSION['media_icon_null'])): ?>
-                                    <small class="text-danger">
-                                        <?php
-                                            echo $_SESSION['media_icon_null'];
-                                            unset($_SESSION['media_icon_null']);
-                                        ?>
-                                    </small>
-                                <?php endif ?>
-                            </div>
-                            <div class="mb-3 overflow-scroll" style="height: 200px;">
+                            <div class="mb-3 overflow-scroll d-flex justify-content-between flex-wrap" style="height: 200px;">
                                 <?php
                                     $icons = array("fa-500px","fa-address-book","fa-address-book-o","fa-address-card","fa-address-card-o","fa-adjust","fa-adn","fa-align-center","fa-align-justify","fa-align-left","fa-align-right",
                                     "fa-amazon","fa-ambulance","fa-american-sign-language-interpreting","fa-anchor","fa-android","fa-angellist","fa-angle-double-down","fa-angle-double-left","fa-angle-double-right","fa-angle-double-up",
@@ -111,58 +109,14 @@
                                     </span>
                                 <?php endforeach?>
                             </div>
-                            <div class="mb-1">
-                                <button type="submit" class="form-control btn btn-primary">Add Social</button>
-                            </div>
-                            <div class="mb-3">
-                                <button type="reset" class="form-control btn btn-warning">Rest Fields</button>
-                            </div>
+                            <button class="btn btn-warning" type="submit">Save Changes</button>
                         </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-9 mt-5">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title text-capitalize">Banner add list</h5>
-                    </div>
-                    <div class="card-body">
-
-                        <table class="table table-bordered">
-                            <thead class="table-info">
-                                <th>Sl</th>
-                                <th>Social Link</th>
-                                <th>Icon Class name</th>
-                                <th>Action</th>
-                            </thead>
-                            <tbody>
-                                <?php foreach (get_all('social_medias') as $key => $icon) : ?>
-                                    <tr>
-                                        <td><?= $key + 1 ?></td>
-                                        <td><a href="<?=$icon['media_url']?>" target="_blank"><?=$icon['media_url']?></a></td>
-                                        <td><i class="fa <?=$icon['media_icon']?>"></i></td>
-                                        <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
-                                            <?php if($icon['active_status'] == 0): ?>
-                                                <a href="social_media_status.php?media_id=<?=$icon['id']?>&status=1" type="button" class="btn btn-success">Active</a>
-                                                <?php else: ?>
-                                                <a href="social_media_status.php?media_id=<?=$icon['id']?>&status=0" type="button" class="btn btn-warning">Disable</a>
-                                            <?php endif ?>
-                                            <a href="social_media_edit.php?media_id=<?=$icon['id']?>" type="button" class="btn btn-info">Edit</a>
-                                            <button type="button" value="social_media_status.php?media_id=<?=$icon['id']?>&status=2" class="deleteBtn btn btn-danger">Delete</button>
-                                        </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <?php require_once '../footer.php'; ?>
 
@@ -172,12 +126,3 @@
         $('#social_icon').val(id);
     })
 </script>
-
-<?php
-    alert_success('social_media_added');
-    alert_success('media_edit_success');
-    alert_success('social_media_activate');
-    alert_warning('social_media_deactivate');
-    alert_delete('social_media_delete');
-    alert_delete_warning('deleteBtn');
-?>

@@ -5,7 +5,8 @@
     require_once '../header.php';
     require_once 'navbar.php';
     require_once '../db.php';
-    
+    require_once 'alert_display.php';
+
 ?>
 
 <section>
@@ -221,22 +222,6 @@
         endif;
         unset($_SESSION['service_item_deleted']);
     ?>
-
-// Service item Delete 
-$('.deleteBtn').click(function(){
-    var link = $(this).val();
-    Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if(result.isConfirmed){
-            window.location.href = link;
-        }
-    })
-});
 </script>
+
+<?php alert_delete_warning('deleteBtn');?>

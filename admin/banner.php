@@ -4,10 +4,6 @@
     require_once '../header.php';
     require_once '../db.php';
     require_once 'navbar.php';
-
-    $get_query = "SELECT * FROM banners";
-    $from_db = mysqli_query(db_connect(), $get_query);
-    $after_assoc = mysqli_fetch_assoc($from_db);
 ?>
 
 <section>
