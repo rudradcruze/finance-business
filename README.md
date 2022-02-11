@@ -9,10 +9,12 @@
     <li>Login System</li>
     <li>Admin Information edit - developed</li>
     <li>Admin password change - developed</li>
-    <li>Admin Dashboard * (Under Development)</li>
-    <li>Banner Slider * (Under Development)</li>
-    <li>Service Section * (Under Development)</li>
+    <li>Admin Dashboard - Developed</li>
+    <li>Banner Slider - Developed</li>
+    <li>Service Section - Developed</li>
     <li>Gust Message Send - developed</li>
+    <li>Social Icon - Developed</li>
+    <li>Counter - Developed</li>
 </ul>
 
 <p>*** All of the data are handel by <code>mysql</code> database</p>
