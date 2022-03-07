@@ -1,6 +1,6 @@
 <?php
     session_start();
-
+    $_SESSION['title'] = "Login Page";
     if (isset($_SESSION['user_status'])) {
         header('location: admin/dashboard.php');
     }

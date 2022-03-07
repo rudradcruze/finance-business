@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-
+    $_SESSION['title'] = "User Registration";
     if (isset($_SESSION['user_status'])) {
         header('location: admin/dashboard.php');
     }
@@ -96,6 +96,7 @@
                     }
                 ?>
             </small>
+            
             <!-- Buttons -->
             <div class="buttons d-flex justify-content-between">
                 <button type="submit" class="btn btn-success" name="submit">Register Now</button>
