@@ -110,9 +110,15 @@
                                 <td><?= $service_head['service_sub_head'] ?></td>
                                 <td>
                                     <?php if($service_head['active_status'] == 0): ?>
-                                        <a href="service_head_status.php?service_head_id=<?= $service_head['id']?>&status=1" class="btn btn-info">Active</a>
+                                        <a href="service_head_status.php?service_head_id=<?= $service_head['id']?>&status=1" class="btn btn-sm btn-info">Active</a>
                                     <?php else: ?>
-                                        <a href="service_head_status.php?service_head_id=<?= $service_head['id']?>&status=0" class="btn btn-warning">De-Active</a>
+                                        <a href="service_head_status.php?service_head_id=<?= $service_head['id']?>&status=0" class="btn btn-sm btn-warning">De-Active</a>
+                                    <?php endif ?>
+                                    <a href="service_edit.php?service_head_id=<?= $service_head['id']?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <?php if($service_head['active_status'] == 0):?>
+                                        <a href="service_edit.php?service_head_id=<?= $service_head['id']?>" class="btn btn-sm btn-danger">Delete</a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn btn-sm btn-danger disabled">Delete</a>
                                     <?php endif ?>
                                 </td>
                             </tr>

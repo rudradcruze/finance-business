@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2022 at 11:10 AM
+-- Generation Time: Mar 07, 2022 at 07:34 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -92,10 +92,10 @@ CREATE TABLE `fun_fact_counters` (
 INSERT INTO `fun_fact_counters` (`id`, `count_value`, `count_head`, `active_status`) VALUES
 (1, 950, 'Work Hours', 1),
 (2, 1280, 'Great Reviews', 1),
-(3, 578, 'Projects Done', 1),
-(4, 26, 'Awards Won', 0),
-(5, 3000, 'Active Users', 0),
-(6, 650, 'Active Alumni', 1);
+(3, 578, 'Projects Done', 0),
+(4, 26, 'Awards Won', 1),
+(5, 3000, 'Active Users', 1),
+(6, 650, 'Active Alumni', 0);
 
 -- --------------------------------------------------------
 
@@ -116,9 +116,9 @@ CREATE TABLE `guest_messages` (
 --
 
 INSERT INTO `guest_messages` (`id`, `guest_name`, `guest_email`, `guest_message`, `read_status`) VALUES
-(17, 'UII', 'uii@gmail.com', 'hii', 0),
 (18, 'HIII', 'Hi@gmail.com', 'Hello\r\n\r\n', 0),
-(19, 'YYY', 'yy@gmail.com', 'Yhh', 1);
+(19, 'YYY', 'yy@gmail.com', 'Yhh', 1),
+(21, 'JJJ', 'hh@gmail.com', 'hifa\r\n', 0);
 
 -- --------------------------------------------------------
 
@@ -139,8 +139,8 @@ CREATE TABLE `service_heads` (
 --
 
 INSERT INTO `service_heads` (`id`, `black_head`, `green_head`, `service_sub_head`, `active_status`) VALUES
-(1, 'Financial', 'Services', 'Aliquam Id imperdiet libero mollis hendrerit', 1),
-(2, 'What they say', 'about us', 'testimonials from our greatest clients', 0),
+(1, 'Financial', 'Services', 'Aliquam Id imperdiet libero mollis hendrerit', 0),
+(2, 'What they say', 'about us', 'testimonials from our greatest clients', 1),
 (3, 'Request a', 'call back', 'Etiam suscipit ante a odio consequat', 0);
 
 -- --------------------------------------------------------
@@ -214,7 +214,8 @@ INSERT INTO `users` (`id`, `f_name`, `u_name`, `mobile`, `email`, `password`) VA
 (2, 'FRANCIS RUDRA D CRUZE', 'rudradcruze', '01870179066', 'francisrudra@gmail.com', '70b4269b412a8af42b1f7b0d26eceff2'),
 (3, 'ISMET ZAHAN SITHI', 'sithi', '01870179066', 'sithi@gmail.com', '70b4269b412a8af42b1f7b0d26eceff2'),
 (4, 'MIR RUMANA ZEBIN ALOM RAISA', 'raisa', '01870179066', 'raisa@gmail.com', '70b4269b412a8af42b1f7b0d26eceff2'),
-(5, 'SHINTHIYA HASAN ORTHY', 'orthy', '01870179066', 'orthy@gmail.com', '70b4269b412a8af42b1f7b0d26eceff2');
+(5, 'SHINTHIYA HASAN ORTHY', 'orthy', '01870179066', 'orthy@gmail.com', '70b4269b412a8af42b1f7b0d26eceff2'),
+(6, 'TAMIM', 'tamim', '01870179066', 'tamim@gmail.com', '70b4269b412a8af42b1f7b0d26eceff2');
 
 --
 -- Indexes for dumped tables
@@ -276,7 +277,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `fun_facts`
@@ -294,7 +295,7 @@ ALTER TABLE `fun_fact_counters`
 -- AUTO_INCREMENT for table `guest_messages`
 --
 ALTER TABLE `guest_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `service_heads`
@@ -318,7 +319,7 @@ ALTER TABLE `social_medias`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
