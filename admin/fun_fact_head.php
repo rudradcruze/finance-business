@@ -149,7 +149,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Background Image</label>
                                 <input type="file" name="fun_fact_bg_image" class="form-control <?php
-                                    if ($_SESSION['fun_fact_bg_image_null']) {
+                                    if (isset($_SESSION['fun_fact_bg_image_null'])) {
                                         echo $_SESSION['fun_fact_bg_image_null'];
                                         unset($_SESSION['fun_fact_bg_image_null']);
                                     }
@@ -271,8 +271,8 @@
                                                 <button type="button" value="<?php
                                                     if (!isset($_SESSION['delete_disable'])) {
                                                         echo "fun_fact_status.php?fun_fact_id=" . $fun_fact_head['id'] . "&status=2";
-                                                    }?>" class="deleteBtn btn btn-danger my-1 <?php
-                                                    if ($_SESSION['delete_disable']) {
+                                                    }?>" class="delete Btn btn btn-danger my-1 <?php
+                                                    if (isset($_SESSION['delete_disable'])) {
                                                         echo $_SESSION['delete_disable'];
                                                     }
                                                 ?>">Delete</button>
