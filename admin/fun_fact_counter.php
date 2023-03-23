@@ -213,8 +213,8 @@
                                                     echo "fun_fact_counter_status.php?fun_fact_id=" . $fun_fact_counter['id'] . "&status=2";
                                                 }
                                             ?>" class="btn btn-danger my-1 <?php
-                                                if ($_SESSION['delete_disable']) {
-                                                    echo $_SESSION['delete_disable'];
+                                                if (!isset($_SESSION['delete_disable'])) {
+                                                    echo "disabled";
                                                 }
                                             ?>">Delete</a>
                                         </div>
